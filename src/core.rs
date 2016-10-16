@@ -20,7 +20,7 @@ pub struct Life {
 impl Life {
     pub fn new<I>(cells: I) -> Self where I: IntoIterator<Item=Cell> {
         Life {
-            alive_cells: cells.into_iter().collect::<HashSet<Cell>>()
+            alive_cells: cells.into_iter().collect()
         }
     }
 }
@@ -58,7 +58,7 @@ impl Engine for Life {
             .flat_map(get_neighbours)
             .unique()
             .filter_map(|x| will_alive(&self.alive_cells, x))
-            .collect::<HashSet<Cell>>();
+            .collect();
 
         Life { alive_cells: alive_cells }
     }
